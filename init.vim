@@ -40,6 +40,9 @@ set nu rnu
 set colorcolumn=80
 set background=dark
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+highlight EchoColorGreen ctermfg=green guifg=green
+highlight EchoColorRed ctermfg=red guifg=red
+highlight EchoColorYellow ctermfg=yellow guifg=yellow
 set nowrap
 set smartcase
 set hlsearch
@@ -64,7 +67,7 @@ map <leader>n :NERDTreeFocus<cr>
 tnoremap <Esc> <C-\><C-n>
 
 " Quick git commands
-map <leader>gc :call GitAllCommit()<cr>
+map <leader>gcm :call GitAllCommit()<cr>
 map <leader>gs :call GitStatus()<cr>
 map <leader>gpsh :call GitPush()<cr>
 map <leader>gpl :call GitPull()<cr>
@@ -80,7 +83,24 @@ function! GitAllCommit()
 endfunction
 
 function! GitStatus()
-        execute '!git status'
+        let git_branch_current = substitute(system("git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'"), '\n\+$', '', '')
+        let git_diff_shortstat = system("git diff --shortstat")
+        let git_diff_numstat = system("git diff --numstat | sed 's/^//'")
+        let git_untracked_file_count = '0'
+        let git_untracked_files = system("git ls-files --other --exclude-standard | sed 's/^/           /'")
+
+        echohl None | echon "branch:    " | echon git_branch_current
+        echo ''
+        echohl None | echon "status:    " | echohl EchoColorRed | echon "unclean"
+        echo ''
+        echohl None | echon "diff:     ".git_diff_shortstat
+        echo ''
+        echohl None | echon "           ".git_diff_numstat
+        echo ''
+        echohl None | echon "untracked: ".git_untracked_file_count
+        echo ''
+        echo git_untracked_files
+
 endfunction
 
 function! GitPush()
