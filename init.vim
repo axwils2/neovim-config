@@ -63,7 +63,8 @@ map <leader>n :NERDTreeFocus<cr>
 " Allow escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-map <leader>g :call GitAddCommit()<cr>
+" Quick git all tracked and commit with message
+map <silent> <leader>g :call GitAddCommit()<cr>
 
 function! GitAddCommit()
         call inputsave()
