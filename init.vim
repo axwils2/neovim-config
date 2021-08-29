@@ -63,12 +63,11 @@ map <leader>n :NERDTreeFocus<cr>
 " Allow escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-" Git add + commit
-nnoremap <leader>gc :call GitAddCommit()<cr>
+map <leader>g :call GitAddCommit()<cr>
 
 function! GitAddCommit()
         call inputsave()
         let message = input('message: ')
         call inputrestore()
-        execute "!git commit -am " . message
+        execute '!git commit --all --message ' . "\"" . message . "\"" 
 endfunction
