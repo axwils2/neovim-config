@@ -66,6 +66,9 @@ tnoremap <Esc> <C-\><C-n>
 " Quick git all tracked and commit with message
 map <silent> <leader>g :call GitAddCommit()<cr>
 
+"""""""""""""""""""""""
+" Custom Functions
+"""""""""""""""""""""""
 function! GitAddCommit()
         call inputsave()
         let message = input('message: ')
