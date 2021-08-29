@@ -64,7 +64,8 @@ map <leader>n :NERDTreeFocus<cr>
 tnoremap <Esc> <C-\><C-n>
 
 " Quick git all tracked and commit with message
-map <silent> <leader>g :call GitAllCommit()<cr><cr>
+" extra cr to clear vim command prompt
+map <leader>g :call GitAllCommit()<cr><cr>
 
 """""""""""""""""""""""
 " Custom Functions
