@@ -2,26 +2,6 @@
 set nocompatible
 filetype off
 
-"""""""""""""""""""""""
-" Line Numbers
-"""""""""""""""""""""""
-" show line numbers based on distance from current line
-set relativenumber
-
-" show current line number in relation to file
-set nu rnu
-
-"""""""""""""""""""""""
-" Custom Mappings
-"""""""""""""""""""""""
-let mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
-" Opening fuzzy file search
-nnoremap <leader>p :Files<cr>
-
 """"""""""""""""""""""
 " Plugins
 """""""""""""""""""""" 
@@ -43,6 +23,29 @@ Plug 'vim-airline/vim-airline'
 " adds color scheme
 Plug 'morhetz/gruvbox'
 
+" adds file explorer
+Plug 'preservim/nerdtree'
+
 call plug#end()
 
 colorscheme gruvbox
+
+"""""""""""""""""""""""
+" Settings
+"""""""""""""""""""""""
+set relativenumber
+set nu rnu
+
+
+"""""""""""""""""""""""
+" Custom Mappings
+"""""""""""""""""""""""
+let mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Opening fuzzy file search
+nnoremap <leader>p :Files<cr>
+map <leader>n :NERDTreeFocus<cr>
+
