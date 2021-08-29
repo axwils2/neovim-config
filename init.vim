@@ -64,12 +64,12 @@ map <leader>n :NERDTreeFocus<cr>
 tnoremap <Esc> <C-\><C-n>
 
 " Quick git all tracked and commit with message
-map <silent> <leader>g :call GitAddCommit()<cr>
+map <silent> <leader>g :call GitAllCommit()<cr><cr>
 
 """""""""""""""""""""""
 " Custom Functions
 """""""""""""""""""""""
-function! GitAddCommit()
+function! GitAllCommit()
         call inputsave()
         let message = input('message: ')
         call inputrestore()
