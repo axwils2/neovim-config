@@ -63,10 +63,11 @@ map <leader>n :NERDTreeFocus<cr>
 " Allow escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-" Quick git all tracked and commit with message
+" Quick git commands
 map <leader>gc :call GitAllCommit()<cr>
-map <leader>gp :call GitPush()<cr>
-map <leader>gpf :call GitPushForce()<cr>
+map <leader>gs :call GitStatus()<cr>
+map <leader>gpsh :call GitPush()<cr>
+map <leader>gpl :call GitPull()<cr>
 
 """""""""""""""""""""""
 " Custom Functions
@@ -78,11 +79,15 @@ function! GitAllCommit()
         execute '!git commit --all --message ' . "\"" . message . "\"" 
 endfunction
 
+function! GitStatus()
+        execute '!git status'
+endfunction
+
 function! GitPush()
         execute '!git push'
 endfunction
 
-function! GitPushForce()
-        execute '!git push -f'
+function! GitPull()
+        execute '!git pull'
 endfunction
 
