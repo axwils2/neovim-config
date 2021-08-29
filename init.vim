@@ -34,8 +34,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" adds syntax checking
-Plug 'scrooloose/syntastic'
+" adds syntax checking/completion -- Requires Node
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " adds status/tabline
 Plug 'vim-airline/vim-airline'
