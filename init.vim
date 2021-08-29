@@ -29,13 +29,24 @@ Plug 'preservim/nerdtree'
 call plug#end()
 
 colorscheme gruvbox
+filetype plugin indent on    " required
+syntax on
 
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
 set relativenumber
 set nu rnu
-
+set colorcolumn=80
+set background=dark
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+set nowrap
+set smartcase
+set hlsearch
+set noerrorbells
+set tabstop=2 softtabstop=2
+set expandtab
+set smartindent
 
 """""""""""""""""""""""
 " Custom Mappings
@@ -49,3 +60,15 @@ nmap <leader>w :w!<cr>
 nnoremap <leader>p :Files<cr>
 map <leader>n :NERDTreeFocus<cr>
 
+" Allow escape to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+" Git add + commit
+nnoremap <leader>gc :call GitAddCommit()<cr>
+
+function! GitAddCommit()
+        call inputsave()
+        let message = input('message: ')
+        call inputrestore()
+        execute "!git commit -am " . message
+endfunction
