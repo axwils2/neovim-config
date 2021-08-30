@@ -95,8 +95,7 @@ function! GitStatus()
         echohl None | echon "branch:    " | echon git_branch_current
         echo ''
 
-        if GitIsCleanWorkTree()
-                
+        if len(git_diff_shortstat) == 0
                 echohl None | echon "status:    " | echohl EchoColorGreen | echon "clean"
         else
                 echohl None | echon "status:    " | echohl EchoColorRed | echon "unclean"
@@ -121,16 +120,21 @@ function! GitPull()
 endfunction
 
 function! GitIsCleanWorkTree()
-        let are_file_changes = system("git diff-files --quiet --ignore-submodules")
+        echo 'got here'
+        let are_file_changes = system("! git diff-files --quiet --ignore-submodules")
+        echom are_file_changes
         if are_file_changes
+                echo 'are_file_changes'
                 return 1
         endif
 
         let are_text_changes = system("git diff-index --cached --quiet --ignore-submodules HEAD --")
         if are_text_changes
+                echo 'are text_changes'
                 return 1
         endif
 
+        echo 'returning 0'
         return 0
 endfunction
 
