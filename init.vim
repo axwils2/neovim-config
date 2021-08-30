@@ -89,7 +89,7 @@ function! GitStatus()
         let git_branch_current = substitute(system("git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'"), '\n\+$', '', '')
         let git_diff_shortstat = system("git diff --shortstat")
         let git_diff_numstat = system("git diff --numstat | sed 's/^//'")
-        let git_untracked_file_count = '0'
+        let git_untracked_file_count = system("git ls-files -o --exclude-standard | wc -l | sed 's/^       //'")
         let git_untracked_files = system("git ls-files --other --exclude-standard | sed 's/^/           /'")
 
         echohl None | echon "branch:    " | echon git_branch_current
