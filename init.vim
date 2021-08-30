@@ -26,6 +26,7 @@ Plug 'morhetz/gruvbox'
 " adds file explorer
 Plug 'preservim/nerdtree'
 
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 colorscheme gruvbox
@@ -111,3 +112,16 @@ function! GitPull()
         execute '!git pull'
 endfunction
 
+function! GitIsCleanWorkTree()
+        let are_file_changes = system("git diff-files --quiet --ignore-submodules")
+        if are_file_changes
+                return 1
+        endif
+
+        let are_text_changes = system("git diff-index --cached --quiet --ignore-submodules HEAD --")
+        if are_text_changes
+                return 1
+        endif
+
+        return 0
+endfunction
