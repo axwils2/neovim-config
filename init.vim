@@ -95,7 +95,7 @@ function! GitStatus()
         echohl None | echon "branch:    " | echon git_branch_current
         echo ''
 
-        if len(git_diff_shortstat) == 0 && git_untracked_file_count == '0'
+        if len(git_diff_shortstat) == 0 && git_untracked_file_count == 0
                 echohl None | echon "status:    " | echohl EchoColorGreen | echon "clean"
         else
                 echohl None | echon "status:    " | echohl EchoColorRed | echon "unclean"
