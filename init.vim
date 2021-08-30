@@ -72,6 +72,8 @@ map <leader>gcm :call GitAllCommit()<cr>
 map <leader>gs :call GitStatus()<cr>
 map <leader>gpsh :call GitPush()<cr>
 map <leader>gpl :call GitPull()<cr>
+map <leader>gco :call GitCheckout()<cr>
+map <leader>gb :call GitBranch()<cr>
 
 """""""""""""""""""""""
 " Custom Functions
@@ -92,7 +94,13 @@ function! GitStatus()
 
         echohl None | echon "branch:    " | echon git_branch_current
         echo ''
-        echohl None | echon "status:    " | echohl EchoColorRed | echon "unclean"
+
+        if GitIsCleanWorkTree()
+                
+                echohl None | echon "status:    " | echohl EchoColorGreen | echon "clean"
+        else
+                echohl None | echon "status:    " | echohl EchoColorRed | echon "unclean"
+        endif
         echo ''
         echohl None | echon "diff:     ".git_diff_shortstat
         echo ''
@@ -125,3 +133,18 @@ function! GitIsCleanWorkTree()
 
         return 0
 endfunction
+
+function! GitCheckout()
+        call inputsave()
+        let branch = input('branch: ')
+        call inputrestore()
+        execute '!git checkout ' . branch
+endfunction
+
+function! GitBranch()
+        call inputsave()
+        let branch = input('branch: ')
+        call inputrestore()
+        execute '!git checkout -b' . branch
+endfunction
+
