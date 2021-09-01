@@ -63,6 +63,7 @@ nmap <leader>w :w!<cr>
 " Opening fuzzy file search
 nnoremap <leader>p :Files<cr>
 map <leader>n :NERDTreeFocus<cr>
+map <leader>f :Rg<cr>
 
 " Allow escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
