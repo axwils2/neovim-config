@@ -51,6 +51,9 @@ set noerrorbells
 set tabstop=2 softtabstop=2
 set expandtab
 set smartindent
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 """""""""""""""""""""""
 " Custom Mappings
