@@ -62,15 +62,31 @@ autocmd FileType javascriptreact setlocal ts=2 sts=2 sw=2
 let mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
+nmap <leader>ws :w!<cr>
+
+" Copy and Paste to System Clipboard
+xmap <leader>c "*y<cr>
+
+" Fast Window Movement
+map <leader>ww :wincmd w<cr>
+map <leader>wj :wincmd j<cr>
+map <leader>wk :wincmd k<cr>
+map <leader>wl :wincmd l<cr>
+map <leader>wh :wincmd h<cr>
 
 " Opening fuzzy file search
-nnoremap <leader>p :Files<cr>
-map <leader>n :NERDTreeFocus<cr>
+nnoremap <leader>p :GFiles<cr>
 map <leader>f :Rg<cr>
 
+" NERDTree
+map <leader>n :NERDTreeToggle<cr>
+map <leader>nf :NERDTreeFind<cr>
+
 " Allow escape to exit terminal mode
-tnoremap <Esc> <C-\><C-n>
+if has("nvim")
+  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au FileType fzf tunmap <buffer> <Esc>
+endif
 
 " Quick git commands
 map <leader>gcm :call GitAllCommit()<cr>
@@ -79,6 +95,8 @@ map <leader>gpsh :call GitPush()<cr>
 map <leader>gpl :call GitPull()<cr>
 map <leader>gco :call GitCheckout()<cr>
 map <leader>gb :call GitBranch()<cr>
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 """""""""""""""""""""""
 " Custom Functions
