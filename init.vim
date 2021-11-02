@@ -27,6 +27,9 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 
 Plug 'jremmen/vim-ripgrep'
+
+" adds nice [] mappings
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 colorscheme gruvbox
@@ -76,7 +79,7 @@ map <leader>wh :wincmd h<cr>
 
 " Opening fuzzy file search
 nnoremap <leader>p :GFiles<cr>
-map <leader>f :Rg<cr>
+nnoremap <leader>f :Ag<cr>
 
 " NERDTree
 map <leader>n :NERDTreeToggle<cr>
@@ -96,7 +99,7 @@ map <leader>gpl :call GitPull()<cr>
 map <leader>gco :call GitCheckout()<cr>
 map <leader>gb :call GitBranch()<cr>
 
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 """""""""""""""""""""""
 " Custom Functions
