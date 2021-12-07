@@ -82,7 +82,7 @@ nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>f :Ag<cr>
 
 " NERDTree
-map <leader>n :NERDTreeToggle<cr>
+map <leader>nt :NERDTreeToggle<cr>
 map <leader>nf :NERDTreeFind<cr>
 
 " Allow escape to exit terminal mode
