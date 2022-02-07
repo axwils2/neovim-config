@@ -26,8 +26,6 @@ Plug 'morhetz/gruvbox'
 " adds file explorer
 Plug 'preservim/nerdtree'
 
-Plug 'jremmen/vim-ripgrep'
-
 " adds nice [] mappings
 Plug 'tpope/vim-unimpaired'
 call plug#end()
@@ -80,6 +78,9 @@ map <leader>wh :wincmd h<cr>
 " Opening fuzzy file search
 nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>f :Ag<cr>
+
+" Enable space adding empty character in Normal
+nnoremap <Space> i<Space><Right><ESC>
 
 " NERDTree
 map <leader>nt :NERDTreeToggle<cr>
