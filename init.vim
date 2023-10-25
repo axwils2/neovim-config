@@ -4,7 +4,7 @@ filetype off
 
 """"""""""""""""""""""
 " Plugins
-"""""""""""""""""""""" 
+""""""""""""""""""""""
 call plug#begin('~/config/nvim/plugged')
 
 " adds :Git or :G functionality for git commmands
@@ -56,6 +56,9 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType javascriptreact setlocal ts=2 sts=2 sw=2
+autocmd FileType typescript setlocal ts=2 sts=2 sw=2
+autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2
+autocmd FileType json setlocal ts=2 sts=2 sw=2
 
 """""""""""""""""""""""
 " Custom Mappings
@@ -64,6 +67,12 @@ let mapleader = ","
 
 " Fast saving
 nmap <leader>ws :w!<cr>
+
+" Add new line at cursor
+nmap <leader>an i<Enter><ESC>
+
+" Replace character under cursor with new line
+nmap <leader>rn s<Enter><ESC>
 
 " Copy and Paste to System Clipboard
 xmap <leader>c "*y<cr>
@@ -109,7 +118,7 @@ function! GitAllCommit()
         call inputsave()
         let message = input('message: ')
         call inputrestore()
-        execute '!git commit --all --message ' . "\"" . message . "\"" 
+        execute '!git commit --all --message ' . "\"" . message . "\""
 endfunction
 
 function! GitStatus()
