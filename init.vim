@@ -37,8 +37,7 @@ syntax on
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
-set relativenumber
-set nu rnu
+set number
 set colorcolumn=80
 set background=dark
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -47,6 +46,7 @@ highlight EchoColorRed ctermfg=red guifg=red
 highlight EchoColorYellow ctermfg=yellow guifg=yellow
 set nowrap
 set smartcase
+set nohidden
 set hlsearch
 set noerrorbells
 set tabstop=2 softtabstop=2
@@ -84,7 +84,15 @@ map <leader>wk :wincmd k<cr>
 map <leader>wl :wincmd l<cr>
 map <leader>wh :wincmd h<cr>
 
+" Allow using Tab (Next) and Shift + Tab (Back) to navigate autocomplete
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+" Allow Right Arrow to confirm autocomplete suggestion
+inoremap <expr> <Right> coc#pum#visible() ? coc#pum#confirm() : "\<Right>"
+
 " Opening fuzzy file search
+nnoremap <leader>P :Files<cr>
 nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>f :Ag<cr>
 
